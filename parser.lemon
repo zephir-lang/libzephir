@@ -1,0 +1,49 @@
+%token_prefix XX_
+%token_type {xx_parser_token*}
+%default_type {json_object*}
+%extra_argument {xx_parser_status *status}
+%name xx_
+
+%left INTERNAL PUBLIC PROTECTED STATIC PRIVATE SCOPED .
+
+%left COMMA .
+%right REQUIRE .
+%right DOUBLEARROW .
+%right QUESTION .
+%right LIKELY UNLIKELY .
+%left OR .
+%left AND .
+%left INSTANCEOF .
+%left BITWISE_OR BITWISE_XOR BITWISE_SHIFTLEFT BITWISE_SHIFTRIGHT .
+%left EQUALS IDENTICAL LESS GREATER LESSEQUAL GREATEREQUAL NOTIDENTICAL NOTEQUALS .
+%left ADD SUB CONCAT .
+%left MUL DIV MOD .
+%right ISSET FETCH EMPTY .
+%left INCLUSIVE_RANGE EXCLUSIVE_RANGE .
+%right TYPEOF .
+%right CLONE .
+%right NEW .
+%right NOT .
+%right BITWISE_NOT .
+%left BITWISE_AND .
+%right PARENTHESES_CLOSE .
+%right SBRACKET_OPEN .
+%right ARROW .
+
+%include {
+#include "parser.lemon.inc.h"
+}
+
+%syntax_error {
+// TODO
+}
+
+%token_destructor {
+// TODO
+}
+
+/*
+ * Local variables:
+ * mode: lemon-c
+ * End:
+ */
