@@ -1,3 +1,14 @@
+/*
++--------------------------------------------------------------------------+
+| Zephir Parser                                                            |
+| Copyright (c) 2013-present Zephir Team (https://zephir-lang.com/)        |
+|                                                                          |
+| This source file is subject the MIT license, that is bundled with this   |
+| package in the file LICENSE, and is available through the world-wide-web |
+| at the following url: https://zephir-lang.com/license.html               |
++--------------------------------------------------------------------------+
+*/
+
 %token_prefix XX_
 %token_type {xx_parser_token*}
 %default_type {json_object*}
@@ -40,6 +51,14 @@
 
 %token_destructor {
 // TODO
+}
+
+program ::= xx_language(Q) . {
+  status->ret = Q;
+}
+
+%destructor xx_language {
+  json_object_put($$);
 }
 
 /*

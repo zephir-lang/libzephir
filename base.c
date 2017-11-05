@@ -8,10 +8,3 @@
   | at the following url: https://zephir-lang.com/license.html               |
   +--------------------------------------------------------------------------+
 */
-
-#include <json-c/json.h>
-
-#include "string.h"
-#include "parser.h"
-#include "scanner.h"
-#include "xx.h"
