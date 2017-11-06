@@ -5,13 +5,28 @@
 #
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
 
-*.o
-*.out
-*.lo
-*.la
 
 lemon
 
 # Will be included in future to enable code coverage
 scanner.c
 zephir.c
+
+# Generated binaries
+*.lo
+*.o
+*.out
+libzephir.la
+
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache
+/compile
+/config.guess
+/config.sub
+/configure
+/depcomp
+/install-sh
+/ltmain.sh
+/missing
