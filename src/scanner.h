@@ -12,6 +12,19 @@
 #ifndef LIBZEPHIR_SCANNER_H
 #define LIBZEPHIR_SCANNER_H
 
+#include "xx.h"
+
+#define XX_SCANNER_RETCODE_EOF -1
+#define XX_SCANNER_RETCODE_ERR -2
+#define XX_SCANNER_RETCODE_IMPOSSIBLE -3
+
+/** Modes */
+#define XX_T_IGNORE 297
+
+#define XX_T_NAMESPACE 350
+
+int xx_get_token(xx_scanner_state *s, xx_scanner_token *token);
+
 #ifdef YYDEBUG
 #undef YYDEBUG
 #endif

@@ -1,1 +1,10 @@
-sudo apt-get install libjson-c-dev libjson-c-doc libjson-c3
+# Unstallation
+
+## Requirements
+
+### Ubuntu
+
+sudo apt-get install re2c libjson-c-dev libjson-c-doc libjson-c3
+
+# Testing
+https://libcheck.github.io/check/web/install.html

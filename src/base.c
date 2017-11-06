@@ -18,6 +18,14 @@ static void *xx_wrapper_alloc(size_t bytes)
 }
 
 /**
+ * Wrapper to free memory within the parser
+ */
+static void xx_wrapper_free(void *pointer)
+{
+  free(pointer);
+}
+
+/**
  * Parses a comment returning an intermediate array representation
  */
 int xx_parse_program(char *program, unsigned int program_length, char *file_path)
@@ -73,9 +81,25 @@ int xx_parse_program(char *program, unsigned int program_length, char *file_path
   token.value = NULL;
 
   while (0 <= (scanner_status = xx_get_token(state, &token))) {
-    // TODO
-    break;
+    state->active_token = token.opcode;
+    state->start_length = (program + program_length - state->start);
+
+    switch (token.opcode) {
+    case XX_T_IGNORE:
+      break;
+    case XX_T_NAMESPACE:
+      xx_(xx_parser, XX_NAMESPACE, NULL, parser_status);
+      break;
+    default:
+      parser_status->status = XX_PARSING_FAILED;
+      break;
+    }
   }
+
+  xx_Free(xx_parser, xx_wrapper_free);
+
+  free(parser_status);
+	free(state);
 
   return status;
 }
