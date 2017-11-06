@@ -1,7 +1,6 @@
 ROOT_DIR       := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 SHELL          := $(shell which bash)
 
-RE2C_FLAGS     ?=
 RE2C_BIN        = $(shell command -v re2c 2> /dev/null)
 
 # no need for @
@@ -15,17 +14,18 @@ lemon:
 
 scanner.c:
 	echo -e "Generating scanner..."
-	$(RE2C_BIN) $(RE2C_FLAGS) --no-generation-date -o $@ scanner.re
+	$(RE2C_BIN) -W --no-debug-info --no-generation-date --nested-ifs --output $@ scanner.re
 
 parser.c: lemon
 	echo -e "Generating parser..."
-	./lemon -s parser.lemon
-	cat base.c >> parser.c
+	./lemon -l -s parser.lemon
 
 # Public targets
 
 .PHONY: build
-build: check parser.c
+build: check base.c scanner.c parser.c
+	cat base.c >> parser.c
+	gcc -Wl,-rpath /usr/local/lib -I/usr/local/include -L/usr/local/lib -L/opt/local/lib -Wall -Werror -fpic -g3 -O0 -w parser.c scanner.c -ljson-c
 
 .PHONY: check
 check:
