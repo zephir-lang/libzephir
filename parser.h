@@ -45,3 +45,6 @@
 #define XX_PARENTHESES_CLOSE               45
 #define XX_SBRACKET_OPEN                   46
 #define XX_ARROW                           47
+#define XX_NAMESPACE                       48
+#define XX_IDENTIFIER                      49
+#define XX_DOTCOMMA                        50

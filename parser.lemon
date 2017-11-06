@@ -61,6 +61,26 @@ program ::= xx_language(Q) . {
   json_object_put($$);
 }
 
+xx_language(R) ::= xx_top_statement_list(L) . {
+	R = L;
+}
+
+xx_top_statement_list(R) ::= xx_top_statement_list(L) xx_top_statement(T) . {
+	R = xx_ret_list(L, T);
+}
+
+xx_top_statement_list(R) ::= xx_top_statement(T) . {
+	R = xx_ret_list(NULL, T);
+}
+
+xx_top_statement(R) ::= xx_namespace_def(T) . {
+	R = T;
+}
+
+xx_namespace_def(R) ::= NAMESPACE IDENTIFIER(I) DOTCOMMA . {
+	R = xx_ret_namespace(I, status->scanner_state);
+}
+
 /*
  * Local variables:
  * mode: lemon-c
