@@ -12,9 +12,10 @@
 #ifndef LIBZEPHIR_XX_H
 #define LIBZEPHIR_XX_H
 
+#include <json-c/json.h>
+
 #define XX_PARSING_OK 1
 #define XX_PARSING_FAILED 0
-
 
 /**
  * Parses a comment returning an intermediate array representation

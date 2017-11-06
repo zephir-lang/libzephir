@@ -8,3 +8,16 @@
   | at the following url: https://zephir-lang.com/license.html               |
   +--------------------------------------------------------------------------+
 */
+
+#ifndef LIBZEPHIR_SCANNER_H
+#define LIBZEPHIR_SCANNER_H
+
+#ifdef YYDEBUG
+#undef YYDEBUG
+#endif
+
+#define YYDEBUG(s, c) do { \
+  printf("State: %d char: %c\n", s, c); \
+} while (0)
+
+#endif

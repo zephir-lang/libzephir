@@ -8,3 +8,21 @@
   | at the following url: https://zephir-lang.com/license.html               |
   +--------------------------------------------------------------------------+
 */
+
+#include <stdio.h>
+#include <string.h>
+
+#include "xx.h"
+#include "scanner.h"
+
+int xx_get_token(xx_scanner_state *s, xx_scanner_token *token)
+{
+  // TODO
+  return 0;
+}
+
+/*
+ * Local variables:
+ * mode: c
+ * End:
+ */
