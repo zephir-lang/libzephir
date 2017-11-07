@@ -21,7 +21,9 @@ libzephir.la
 .deps/
 .libs/
 /Makefile
+/src/Makefile
 /Makefile.in
+/src/Makefile.in
 /aclocal.m4
 /autom4te.cache
 /compile
