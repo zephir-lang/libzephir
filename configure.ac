@@ -9,7 +9,7 @@ dnl AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 dnl -------------------------------------------------------------------------
 AM_INIT_AUTOMAKE([-Wall foreign])
 
-dnl locate ar using standard macro (old automake 1.11 does not know about AM_PROG_AR)
+dnl locate ar using standard macro
 dnl -------------------------------------------------------------------------
 m4_ifdef([AM_PROG_AR],
          [AM_PROG_AR],
