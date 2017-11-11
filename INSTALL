@@ -2,9 +2,16 @@
 
 ## Requirements
 
+* autoreconf: ftp://ftp.gnu.org/pub/gnu/
+* autoconf: ftp://ftp.gnu.org/pub/gnu/
+* re2c: http://re2c.org/
+* libjson-c: https://github.com/json-c/json-c
+* make
+* gcc
+
 ### Ubuntu
 
-sudo apt-get install re2c libjson-c-dev libjson-c-doc libjson-c3
+sudo apt-get install re2c libjson-c-dev libjson-c3 autoconf make gcc
 
 # Testing
 https://libcheck.github.io/check/web/install.html
