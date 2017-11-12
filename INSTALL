@@ -3,7 +3,7 @@ Quick-start build instructions
 
 1) Generate required scripts:
 
-	./autogen.sh
+	sh autogen.sh
 
 2) Configure the package:
 
