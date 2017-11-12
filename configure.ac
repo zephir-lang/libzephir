@@ -7,8 +7,6 @@ dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
 sinclude($(datadir)/m4/libzephir.m4)
 
-dnl AM_INIT_AUTOMAKE([-Wall -Werror foreign])
-dnl -------------------------------------------------------------------------
 AM_INIT_AUTOMAKE([-Wall foreign])
 
 dnl Locate ar using standard macro.
@@ -51,6 +49,10 @@ AM_CONDITIONAL([TEST_64BIT], [test "$ac_cv_sizeof_void_p" -eq 8])
 dnl Checks for library functions.
 dnl -------------------------------------------------------------------------
 AC_FUNC_MALLOC
+
+dnl Checks for libraries.
+dnl -------------------------------------------------------------------------
+PKG_CHECK_MODULES([LIBJSONC], [json-c >= 0.9],, AC_MSG_ERROR([libjson-c-dev 0.9 or newer not found.]))
 
 LT_INIT
 

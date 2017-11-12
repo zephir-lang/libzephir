@@ -51,8 +51,10 @@ LIBZEPHIR_RE2C_CHECK
 
 AC_REQUIRE([AC_PROG_CC])
 AC_REQUIRE([AC_PROG_CC_C_O])
+AC_REQUIRE([AC_PROG_LIBTOOL])
 
 dnl Checks for header files.
 dnl -------------------------------------------------------------------------
 AC_REQUIRE([AC_HEADER_STDC])
+AC_REQUIRE([AC_HEADER_STDBOOL])
 ])
