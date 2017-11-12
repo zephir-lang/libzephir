@@ -2,7 +2,7 @@ Makefile.am linguist-language=Makefile
 *.m4        linguist-language=M4
 *.c         linguist-language=C
 *.h         linguist-language=C
-*.ac        linguist-language=C
+*.ac        linguist-language=M4
 *.w32       linguist-language=JavaScript
 
 AUTHORS text
