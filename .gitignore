@@ -5,8 +5,8 @@
 #
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
 
-# I use this file as TODO list
-LATER
+# I use this as my wish list
+TODO
 
 lemon
 

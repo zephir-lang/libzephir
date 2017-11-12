@@ -1,0 +1,13 @@
+Makefile.am linguist-language=Makefile
+*.m4        linguist-language=M4
+*.c         linguist-language=C
+*.h         linguist-language=C
+*.ac        linguist-language=C
+*.w32       linguist-language=JavaScript
+
+AUTHORS text
+COPYING text
+INSTALL text
+NEWS    text
+README  text
+TODO    text
