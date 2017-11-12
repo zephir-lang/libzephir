@@ -50,11 +50,25 @@ dnl Checks for library functions.
 dnl -------------------------------------------------------------------------
 AC_FUNC_MALLOC
 
-dnl Checks for libraries.
+dnl Checks for modules.
 dnl -------------------------------------------------------------------------
-PKG_CHECK_MODULES([LIBJSONC], [json-c >= 0.9],, AC_MSG_ERROR([libjson-c-dev 0.9 or newer not found.]))
+PKG_CHECK_MODULES([LIBJSONC], [json-c >= 0.11],, AC_MSG_ERROR([libjson-c-dev 0.11 or newer not found.]))
+AC_CHECK_HEADERS([json-c/json.h], [json_found_headers=yes; break;])
+AS_IF([test "x$json_found_headers" != "xyes"], [AC_MSG_ERROR([Unable to find json-c headers.])])
 
-LT_INIT
+AC_ARG_ENABLE([debug],
+  [AS_HELP_STRING([--enable-debug],
+  [use debug compiler flags and macros (default is no)])],
+  [enable_debug=$enableval],
+  [enable_debug=no])
+
+if test "x$enable_debug" = xyes; then
+   CFLAGS="$CFLAGS -DDEBUG -g3 -O0"
+else
+  CFLAGS="$CFLAGS -O3"
+fi
+
+LT_INIT([shared static])
 
 AC_CONFIG_FILES([
   Makefile
