@@ -1,19 +1,18 @@
-AC_PREREQ(2.64)
-
 dnl Process this file with autoconf to produce a configure script.
 dnl FIXME: move version to the version.h
 dnl -------------------------------------------------------------------------
-AC_INIT([Zephir Library], 0.0.1, [serghei@phalconphp.com])
+AC_INIT([libzephir], 0.0.1, [serghei@phalconphp.com])
 
-dnl Include libzephir specific macro definitions first
+dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
-sinclude(m4/libzephir.m4)
+sinclude($(datadir)/m4/libzephir.m4)
 
 dnl AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 dnl -------------------------------------------------------------------------
 AM_INIT_AUTOMAKE([-Wall foreign])
 
-dnl locate ar using standard macro
+dnl Locate ar using standard macro.
+dnl Old automake 1.11 does not know about `AM_PROG_AR'.
 dnl -------------------------------------------------------------------------
 m4_ifdef([AM_PROG_AR],
          [AM_PROG_AR],
@@ -25,7 +24,7 @@ AC_PROG_MAKE_SET
 
 AC_CANONICAL_HOST
 
-dnl enable silent build by default
+dnl Enable silent build by default.
 dnl -------------------------------------------------------------------------
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
@@ -34,7 +33,7 @@ dnl -------------------------------------------------------------------------
 AC_HEADER_STDC
 AC_CHECK_HEADERS([assert.h stdlib.h string.h])
 
-dnl checks for programs
+dnl Checks for programs.
 dnl -------------------------------------------------------------------------
 AC_PROG_CC
 AC_PROG_INSTALL
