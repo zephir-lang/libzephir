@@ -13,7 +13,7 @@ AC_DEFUN([AC_PROG_RE2C],[
       re2c_vernum=`$RE2C --vernum 2>/dev/null`
       if test -z "$re2c_vernum"; then
         libzephir_cv_re2c_version=no
-      elif test "$re2c_vernum" -lt "1304"; then
+      elif test "$re2c_vernum" -lt "1306"; then
         libzephir_cv_re2c_version=invalid
       else
         libzephir_cv_re2c_version="`$RE2C --version | cut -d ' ' -f 2  2>/dev/null` (ok)"
@@ -22,7 +22,7 @@ AC_DEFUN([AC_PROG_RE2C],[
   fi
   case $libzephir_cv_re2c_version in
     ""|invalid|no[)]
-      AC_MSG_ERROR([To use libzephir you need re2c 0.13.4 or later.])
+      AC_MSG_ERROR([To use libzephir you need re2c 0.13.6 or later.])
       RE2C="exit 1;"
       ;;
   esac
