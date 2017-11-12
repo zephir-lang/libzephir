@@ -10,6 +10,11 @@ compiler:
   - gcc
   - clang
 
+addons:
+  apt:
+    packages:
+      - re2c
+
 os:
   - linux
   - osx
