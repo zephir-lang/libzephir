@@ -1,13 +1,16 @@
 dnl Process this file with autoconf to produce a configure script.
-dnl FIXME: move version to the version.h
+
+dnl Minimum Autoconf version required.
 dnl -------------------------------------------------------------------------
-AC_INIT([Zephir Library], 0.0.1, [serghei@phalconphp.com])
+AC_PREREQ(2.53)
+
+AC_INIT([Zephir Library], [(see version.h)], [serghei@phalconphp.com], [libzephir], [https://zephir-lang.com/])
 
 dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
-sinclude($(datadir)/m4/libzephir.m4)
+m4_include([m4/libzephir.m4])
 
-AM_INIT_AUTOMAKE([-Wall foreign])
+AM_INIT_AUTOMAKE([foreign -Wall])
 
 dnl Locate ar using standard macro.
 dnl Old automake 1.11 does not know about `AM_PROG_AR'.
@@ -26,9 +29,14 @@ LIBZEPHIR_BASIC_CHECKS
 
 dnl Checks for modules.
 dnl -------------------------------------------------------------------------
-PKG_CHECK_MODULES([LIBJSONC], [json-c >= 0.11],, AC_MSG_ERROR([libjson-c 0.11 or newer not found.]))
+PKG_CHECK_MODULES([LIBJSONC], [json-c >= 0.11],,
+  AC_MSG_ERROR([libjson-c 0.11 or newer not found.])
+)
+
 AC_CHECK_HEADERS([json-c/json.h], [json_found_headers=yes; break;])
-AS_IF([test "x$json_found_headers" != "xyes"], [AC_MSG_ERROR([Unable to find json-c headers.])])
+AS_IF([test "x$json_found_headers" != "xyes"], [
+  AC_MSG_ERROR([Unable to find json-c headers.])
+])
 
 AC_ARG_ENABLE([debug],
   [AS_HELP_STRING([--enable-debug],
