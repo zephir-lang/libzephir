@@ -28,16 +28,15 @@ dnl Enable silent build by default.
 dnl -------------------------------------------------------------------------
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
+LIBZEPHIR_BASIC_CHECKS
+
 dnl Checks for header files.
 dnl -------------------------------------------------------------------------
-AC_HEADER_STDC
 AC_CHECK_HEADERS([assert.h stdlib.h string.h])
 
 dnl Checks for programs.
 dnl -------------------------------------------------------------------------
-AC_PROG_CC
 AC_PROG_INSTALL
-AC_PROG_RE2C
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 dnl -------------------------------------------------------------------------

@@ -6,7 +6,7 @@ libzephir_la_SOURCES = scanner.c zephir.c
 include_HEADERS = libzephir.h
 
 scanner.c: $(srcdir)/scanner.re
-	$(RE2C) $(RE2C_FLAGS) --no-generation-date -W --output $@ $(srcdir)/scanner.re
+	$(RE2C) @RE2C_FLAGS@ --output $@ $(srcdir)/scanner.re
 
 zephir.c: base.c $(srcdir)/lemon
 	$(srcdir)/lemon -l -s zephir.lemon
