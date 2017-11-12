@@ -36,3 +36,5 @@ install-sh
 libtool
 ltmain.sh
 missing
+m4/*
+!m4/libzephir.m4

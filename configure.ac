@@ -5,6 +5,10 @@ dnl FIXME: move version to the version.h
 dnl -------------------------------------------------------------------------
 AC_INIT([Zephir Library], 0.0.1, [serghei@phalconphp.com])
 
+dnl Include libzephir specific macro definitions first
+dnl -------------------------------------------------------------------------
+sinclude(m4/libzephir.m4)
+
 dnl AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 dnl -------------------------------------------------------------------------
 AM_INIT_AUTOMAKE([-Wall foreign])
