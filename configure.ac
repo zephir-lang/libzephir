@@ -44,6 +44,11 @@ dnl -------------------------------------------------------------------------
 AC_C_CONST
 AC_TYPE_SIZE_T
 
+dnl Test if we should test features that depend on 64-bitness.
+dnl -------------------------------------------------------------------------
+AC_CHECK_SIZEOF([void *])
+AM_CONDITIONAL([TEST_64BIT], [test "$ac_cv_sizeof_void_p" -eq 8])
+
 dnl Checks for library functions.
 dnl -------------------------------------------------------------------------
 AC_FUNC_MALLOC

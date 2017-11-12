@@ -17,11 +17,6 @@
 #define XX_PARSING_OK 1
 #define XX_PARSING_FAILED 0
 
-/**
- * Parses a comment returning an intermediate array representation
- */
-extern int xx_parse_program(char *program, unsigned int program_length, char *file_path);
-
 /* List of tokens and their names */
 typedef struct _xx_token_names {
   unsigned int code;

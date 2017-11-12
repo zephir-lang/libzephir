@@ -28,7 +28,7 @@ static void xx_wrapper_free(void *pointer)
 /**
  * Parses a comment returning an intermediate array representation
  */
-int xx_parse_program(char *program, unsigned int program_length, char *file_path)
+int parse_program(char *program, unsigned int program_length, char *file_path)
 {
   char *error;
 	xx_scanner_state *state;
