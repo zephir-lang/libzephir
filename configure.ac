@@ -4,7 +4,7 @@ dnl Minimum Autoconf version required.
 dnl -------------------------------------------------------------------------
 AC_PREREQ(2.53)
 
-AC_INIT([Zephir Library], [(see version.h)], [serghei@phalconphp.com], [libzephir], [https://zephir-lang.com/])
+AC_INIT([Zephir Library], [0.0.1], [serghei@phalconphp.com], [libzephir], [https://zephir-lang.com/])
 
 dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
@@ -44,11 +44,16 @@ AC_ARG_ENABLE([debug],
   [enable_debug=$enableval],
   [enable_debug=no])
 
+LEMON_FLAGS="-l"
+
 if test "x$enable_debug" = xyes; then
-   CFLAGS="$CFLAGS -DDEBUG -g3 -O0"
+  CFLAGS="$CFLAGS -DDEBUG -g3 -O0"
+  LEMON_FLAGS="-s"
 else
   CFLAGS="$CFLAGS -O3"
 fi
+
+AC_SUBST(LEMON_FLAGS)
 
 LT_INIT([shared static])
 
