@@ -5,6 +5,9 @@
 #
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
 
+# I use this file as TODO list
+LATER
+
 lemon
 
 # Will be included in future to enable code coverage
