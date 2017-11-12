@@ -20,10 +20,16 @@ os:
   - osx
 
 cache:
+  apt: true
   timeout: 604800
   directories:
     - $HOME/.local/opt/re2c
     - $HOME/.cache/re2c
+
+addons:
+  apt:
+    packages:
+      libjson-c-dev
 
 install:
   - sh tests/install-re2c $RE2C_VERSION
