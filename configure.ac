@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl FIXME: move version to the version.h
 dnl -------------------------------------------------------------------------
-AC_INIT([libzephir], 0.0.1, [serghei@phalconphp.com])
+AC_INIT([Zephir Library], 0.0.1, [serghei@phalconphp.com])
 
 dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
