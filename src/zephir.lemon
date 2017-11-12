@@ -42,6 +42,7 @@
 %right ARROW .
 
 %include {
+#include "libzephir.h"
 #include "lemon.inc.h"
 }
 

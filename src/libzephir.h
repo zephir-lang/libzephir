@@ -12,6 +12,11 @@
 #ifndef LIBZEPHIR_H
 #define LIBZEPHIR_H
 
+#ifndef VERSION
+/* Get libzephir version number. */
+#include "version.h"
+#endif
+
 /**
  * Parses a comment returning an intermediate array representation
  */
