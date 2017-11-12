@@ -15,12 +15,12 @@ scanner.c
 zephir.c
 
 # Generated binaries
+*.a
+*.la
 *.lo
 *.o
+*.so
 *.out
-libzephir.a
-libzephir.la
-libzephir.so
 
 .deps/
 .libs/

@@ -23,7 +23,7 @@ AC_DEFUN([LIBZEPHIR_RE2C_CHECK],[
           RE2C_FLAGS="--no-generation-date"
         fi
 
-        libzephir_cv_re2c_version="`$RE2C --version | cut -d ' ' -f 2  2>/dev/null` (ok)"
+        libzephir_cv_re2c_version="`$RE2C --version | cut -d ' ' -f 2`"
       fi
     ])
   fi
@@ -43,18 +43,35 @@ AC_DEFUN([LIBZEPHIR_RE2C_CHECK],[
   AC_SUBST(RE2C)
 ])
 
+dnl libzephir basic checks.
+dnl --------------------------------------------------------------------------
 AC_DEFUN([LIBZEPHIR_BASIC_CHECKS],[
+  dnl Checks for programs.
+  dnl ------------------------------------------------------------------------
+  AC_REQUIRE([AC_PROG_CC])
+  AC_REQUIRE([AC_PROG_CC_C_O])
+  AC_REQUIRE([AC_PROG_INSTALL])
+  AC_REQUIRE([AC_PROG_MAKE_SET])
 
-dnl Checks for programs.
-dnl -------------------------------------------------------------------------
-LIBZEPHIR_RE2C_CHECK
+  dnl Checks for typedefs, structures, and compiler characteristics.
+  dnl ------------------------------------------------------------------------
+  AC_REQUIRE([AC_C_CONST])
+  AC_REQUIRE([AC_TYPE_SIZE_T])
 
-AC_REQUIRE([AC_PROG_CC])
-AC_REQUIRE([AC_PROG_CC_C_O])
-AC_REQUIRE([AC_PROG_LIBTOOL])
+  LIBZEPHIR_RE2C_CHECK
 
-dnl Checks for header files.
-dnl -------------------------------------------------------------------------
-AC_REQUIRE([AC_HEADER_STDC])
-AC_REQUIRE([AC_HEADER_STDBOOL])
+  dnl Checks for header files.
+  dnl ------------------------------------------------------------------------
+  AC_REQUIRE([AC_HEADER_STDC])
+  AC_REQUIRE([AC_HEADER_STDBOOL])
+  AC_CHECK_HEADERS([assert.h malloc.h stdlib.h string.h])
+
+  dnl Checks for library functions.
+  dnl ------------------------------------------------------------------------
+  AC_REQUIRE([AC_FUNC_MALLOC])
+
+  dnl Test if we should test features that depend on 64-bitness.
+  dnl ------------------------------------------------------------------------
+  AC_CHECK_SIZEOF([void *])
+  AM_CONDITIONAL([TEST_64BIT], [test "$ac_cv_sizeof_void_p" -eq 8])
 ])

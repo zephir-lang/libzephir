@@ -36,7 +36,7 @@ install:
   - sh autogen.sh
 
 before_script:
-  - ./configure
+  - ./configure --enable-debug
 
 script:
   - make

@@ -1,5 +1,8 @@
 #!/bin/sh
+
 # Run this to generate configure, Makefile.in's, etc
+
+set -e
 
 (autoreconf --version) < /dev/null > /dev/null 2>&1 || {
   (autoconf --version) < /dev/null > /dev/null 2>&1 || {
@@ -18,8 +21,8 @@
   exit 1
 }
 
-echo Running autoreconf --verbose --install --force
-autoreconf --verbose --install --force
+echo Running autoreconf --verbose --install --force --warnings=all
+autoreconf --verbose --install --force --warnings=all
 
 echo Removing autom4te.cache
 rm -rf autom4te.cache

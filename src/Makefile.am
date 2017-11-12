@@ -1,8 +1,17 @@
 ## Process this file with automake to produce Makefile.in
 
 lib_LTLIBRARIES = libzephir.la
-
 libzephir_la_SOURCES = scanner.c zephir.c
+libzephir_la_LIBADD = -ljson-c -lm
+
+# The rules of thumb, when dealing with these values are:
+# - Always increase the revision value.
+# - Increase the current value whenever an interface has been added, removed or changed.
+# - Increase the age value only if the changes made to the ABI are backward compatible.
+# https://autotools.io/libtool/version.html
+# The order for version-info is <current>:<revision>:<age>
+libzephir_la_LDFLAGS = -Wall -version-info 1:1:0
+
 include_HEADERS = libzephir.h
 
 scanner.c: $(srcdir)/scanner.re
