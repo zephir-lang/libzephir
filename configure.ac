@@ -10,7 +10,7 @@ dnl Include libzephir specific macro definitions first.
 dnl -------------------------------------------------------------------------
 m4_include([m4/libzephir.m4])
 
-AM_INIT_AUTOMAKE([foreign -Wall])
+AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 dnl Locate ar using standard macro.
 dnl Old automake 1.11 does not know about `AM_PROG_AR'.
