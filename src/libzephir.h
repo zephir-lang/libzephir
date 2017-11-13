@@ -1,6 +1,6 @@
 /*
   +--------------------------------------------------------------------------+
-  | Zephir Parser                                                            |
+  | Zephir Library                                                           |
   | Copyright (c) 2013-2017 Zephir Team (https://zephir-lang.com/)           |
   |                                                                          |
   | This source file is subject the MIT license, that is bundled with this   |
@@ -12,14 +12,22 @@
 #ifndef LIBZEPHIR_H
 #define LIBZEPHIR_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef VERSION
 /* Get libzephir version number. */
 #include "version.h"
 #endif
 
 /**
- * Parses a comment returning an intermediate array representation
+ * @brief Parses a programm returning an intermediate array representation
  */
-extern int parse_program(char *program, unsigned int program_length, char *file_path);
+int parse_program(char *program, unsigned int program_length, char *file_path);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

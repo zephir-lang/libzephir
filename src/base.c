@@ -1,6 +1,6 @@
 /*
   +--------------------------------------------------------------------------+
-  | Zephir Parser                                                            |
+  | Zephir Library                                                           |
   | Copyright (c) 2013-2017 Zephir Team (https://zephir-lang.com/)           |
   |                                                                          |
   | This source file is subject the MIT license, that is bundled with this   |
@@ -9,25 +9,16 @@
   +--------------------------------------------------------------------------+
 */
 
-/**
- * Wrapper to alloc memory within the parser
- */
 static void *xx_wrapper_alloc(size_t bytes)
 {
   return malloc(bytes);
 }
 
-/**
- * Wrapper to free memory within the parser
- */
 static void xx_wrapper_free(void *pointer)
 {
   free(pointer);
 }
 
-/**
- * Parses a comment returning an intermediate array representation
- */
 int parse_program(char *program, unsigned int program_length, char *file_path)
 {
   char *error;
