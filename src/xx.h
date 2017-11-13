@@ -1,6 +1,6 @@
 /*
   +--------------------------------------------------------------------------+
-  | Zephir Parser                                                            |
+  | Zephir Library                                                           |
   | Copyright (c) 2013-2017 Zephir Team (https://zephir-lang.com/)           |
   |                                                                          |
   | This source file is subject the MIT license, that is bundled with this   |

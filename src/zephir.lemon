@@ -46,11 +46,28 @@
 }
 
 %syntax_error {
-// TODO
+  json_object *syntax_error = json_object_new_object();
+
+  json_object_object_add(syntax_error, "type", json_object_new_string("error"));
+
+  if (status->scanner_state->start_length) {
+    json_object_object_add(syntax_error, "message", json_object_new_string("Syntax error"));
+  } else {
+    json_object_object_add(syntax_error, "message", json_object_new_string("Unexpected EOF"));
+  }
+
+  json_object_object_add(syntax_error, "file", json_object_new_string(status->scanner_state->active_file));
+	json_object_object_add(syntax_error, "line", json_object_new_int(status->scanner_state->active_line));
+	json_object_object_add(syntax_error, "char", json_object_new_int(status->scanner_state->active_char));
+
+	status->status = XX_PARSING_FAILED;
+	status->ret = syntax_error;
 }
 
 %token_destructor {
-// TODO
+  if ($$) {
+    free($$);
+  }
 }
 
 program ::= xx_language(Q) . {
