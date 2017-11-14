@@ -22,10 +22,10 @@ More detailed build instructions
 
    Requirements
 
-   * autoreconf: ftp://ftp.gnu.org/pub/gnu/
-   * autoconf: ftp://ftp.gnu.org/pub/gnu/
+   To build Zephir Library you'll need Autoconf, Automake, and friends
+   (collectively known as Autotools).
+
    * re2c: http://re2c.org/
    * libjson-c: https://github.com/json-c/json-c
    * make
-   * gcc
 
