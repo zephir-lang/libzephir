@@ -51,3 +51,8 @@ script:
 
 after_success:
   - if [[ ! -z "${CODECOV_TOKEN}" ]]; then bash <(curl -s https://codecov.io/bash); fi;
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
