@@ -26,6 +26,7 @@ zephir.c
 
 .deps/
 .libs/
+build-aux/
 autom4te.cache/
 ar-lib
 Makefile
@@ -43,3 +44,9 @@ ltmain.sh
 missing
 m4/*
 !m4/libzephir.m4
+
+# Tests
+/test-driver
+/tests/check_libzephir
+/tests/*.log
+/tests/*.trs
