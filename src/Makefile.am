@@ -12,7 +12,11 @@ libzephir_la_LIBADD = -ljson-c -lm
 # The order for version-info is <current>:<revision>:<age>
 libzephir_la_LDFLAGS = -Wall -version-info 1:1:0
 
-include_HEADERS = xx.h zephir.h scanner.h libzephir.h
+pkginclude_HEADERS = \
+	xx.h \
+	zephir.h \
+	scanner.h \
+	libzephir.h
 
 scanner.c: $(srcdir)/scanner.re
 	$(RE2C) @RE2C_FLAGS@ --output $@ $(srcdir)/scanner.re
