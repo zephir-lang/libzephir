@@ -25,6 +25,7 @@ cache:
   directories:
     - $HOME/.local/opt/re2c
     - $HOME/.cache/re2c
+    - $HOME/Library/Caches/Homebrew
 
 addons:
   apt:
@@ -33,6 +34,11 @@ addons:
       libjson-c-dev
 
 install:
+  - |
+    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      brew update
+      brew install check json-c
+    fi
   - sh tests/install-re2c $RE2C_VERSION
   - sh autogen.sh
 
