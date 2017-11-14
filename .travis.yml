@@ -29,6 +29,7 @@ cache:
 addons:
   apt:
     packages:
+      check
       libjson-c-dev
 
 install:
