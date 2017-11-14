@@ -58,9 +58,16 @@ AC_ARG_ENABLE([debug],
   [enable_debug=no]
 )
 
+AC_ARG_ENABLE([gcov],
+  [AS_HELP_STRING([--enable-gcov],
+                  [whether to include gcov symbols (default is no)])],
+  [enable_gcov=$enableval],
+  [enable_gcov=no]
+)
+
 LEMON_FLAGS="-l"
 
-if test "x$enable_debug" = xyes; then
+if [test "x$enable_debug" = xyes] || [test "x$enable_gcov" = xyes]; then
   LEMON_FLAGS="-s"
 
   AC_DEFINE(LIBZEPHIR_DEBUG, 1, [Whether enabled debug])
@@ -74,45 +81,28 @@ if test "x$enable_debug" = xyes; then
   CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-g[0-9]*//g'`
   changequote([,])
 
-  dnl Add `–coverage' gcc flag
   CFLAGS="$CFLAGS -g -O0"
   CXXFLAGS="$CXXFLAGS -g -O0"
+
+  if test "x$enable_gcov" = xyes; then
+    dnl FIXME Deal with clang
+    if test "$GCC" != "yes"; then
+      AC_MSG_ERROR([GCC is required for --enable-gcov])
+    fi
+
+    AC_DEFINE(HAVE_GCOV, 1, [Whether you have gcov])
+
+    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+    CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage"
+  else
+    AC_DEFINE(HAVE_GCOV, 0, [Whether you have gcov])
+  fi
 else
   CFLAGS="$CFLAGS -O3"
   AC_DEFINE(LIBZEPHIR_DEBUG, 0, [Whether enabled debug])
 fi
 
 AC_SUBST(LEMON_FLAGS)
-
-AC_ARG_ENABLE([gcov],
-  [AS_HELP_STRING([--enable-gcov],
-                  [whether to include gcov symbols (default is no)])],
-  [enable_gcov=$enableval],
-  [enable_gcov=no]
-)
-
-if test "x$enable_gcov" = xyes; then
-  if test "$GCC" != "yes"; then
-    AC_MSG_ERROR([GCC is required for --enable-gcov])
-  fi
-
-  AC_DEFINE(HAVE_GCOV, 1, [Whether you have gcov])
-
-  dnl Remove all optimization flags from CFLAGS
-  changequote({,})
-  CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9s]*//g'`
-  CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-O[0-9s]*//g'`
-
-  CFLAGS=`echo "$CFLAGS" | $SED -e 's/-g[0-9]*//g'`
-  CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-g[0-9]*//g'`
-  changequote([,])
-
-  dnl Add `–coverage' gcc flag
-  CFLAGS="$CFLAGS -g -O0 –coverage"
-  CXXFLAGS="$CXXFLAGS -g -O0 –coverage"
-else
-  AC_DEFINE(HAVE_GCOV, 0, [Whether you have gcov])
-fi
 
 LT_INIT([shared static])
 
