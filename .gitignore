@@ -23,6 +23,8 @@ zephir.c
 *.o
 *.so
 *.out
+*.gcno
+*.gcda
 
 .deps/
 .libs/
@@ -44,8 +46,6 @@ install-sh
 libtool
 ltmain.sh
 missing
-m4/*
-!m4/libzephir.m4
 stamp-h1
 
 # Tests

@@ -5,9 +5,9 @@ Makefile.am linguist-language=Makefile
 *.ac        linguist-language=M4
 *.w32       linguist-language=JavaScript
 
-AUTHORS text
-COPYING text
-INSTALL text
-NEWS    text
-README  text
-TODO    text
+AUTHORS     text
+COPYING     text
+INSTALL     text
+NEWS        text
+README      text
+TODO        text
