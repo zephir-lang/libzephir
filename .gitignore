@@ -10,7 +10,7 @@ LATER
 
 lemon
 
-libzephir-*
+/libzephir-*
 
 # Will be included in future to enable code coverage
 scanner.c
@@ -33,6 +33,8 @@ Makefile
 Makefile.in
 aclocal.m4
 compile
+config.h
+config.h.*
 config.guess
 config.status
 config.sub
@@ -44,6 +46,7 @@ ltmain.sh
 missing
 m4/*
 !m4/libzephir.m4
+stamp-h1
 
 # Tests
 /test-driver

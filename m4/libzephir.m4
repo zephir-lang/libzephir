@@ -63,8 +63,8 @@ AC_DEFUN([LIBZEPHIR_BASIC_CHECKS],[
   dnl Checks for header files.
   dnl ------------------------------------------------------------------------
   AC_REQUIRE([AC_HEADER_STDC])
+  AC_REQUIRE([AC_HEADER_ASSERT])
   AC_REQUIRE([AC_HEADER_STDBOOL])
-  AC_CHECK_HEADERS([assert.h malloc.h stdlib.h string.h])
 
   dnl Checks for library functions.
   dnl ------------------------------------------------------------------------

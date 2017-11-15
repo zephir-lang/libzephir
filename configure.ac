@@ -49,7 +49,7 @@ dnl This macro is defined in check.m4 and tests if check.h and
 dnl libcheck.a are installed in your system. It sets CHECK_CFLAGS and
 dnl HECK_LIBS accordingly.
 dnl ------------------------------------------------------------------------
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
 
 AC_ARG_ENABLE([debug],
   [AS_HELP_STRING([--enable-debug],
@@ -103,6 +103,8 @@ else
 fi
 
 AC_SUBST(LEMON_FLAGS)
+
+AC_CONFIG_HEADERS([config.h])
 
 LT_INIT([shared static])
 
