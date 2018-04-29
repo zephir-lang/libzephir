@@ -21,12 +21,12 @@ set -e
   exit 1
 }
 
-echo Running autoreconf --verbose --install --force --warnings=all
+echo "Running autoreconf --verbose --install --force --warnings=all"
 # - The --force option rebuilds the configure script regardless of its
 #   timestamp in relation to that of the file configure.ac.
 # - The option --install copies some missing files to the directory,
 #   including the text files e.g. COPYING and INSTALL.
 autoreconf --verbose --install --force --warnings=all
 
-echo Removing autom4te.cache
+echo "Removing autom4te.cache"
 rm -rf autom4te.cache
