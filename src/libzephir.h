@@ -16,11 +16,6 @@
 extern "C" {
 #endif
 
-#ifndef VERSION
-/* Get libzephir version number. */
-#include "version.h"
-#endif
-
 /**
  * @brief Parses a program returning an intermediate array representation
  */
