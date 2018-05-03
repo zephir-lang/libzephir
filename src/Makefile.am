@@ -29,5 +29,9 @@ lemon: lemon.c lempar.c
 	$(CC) -w lemon.c -o $@
 
 clean-local:
-	-rm -f *.out *.loT lemon scanner.c zephir.c libzephir.so
+	-rm -f *.out *.gcno *.loT lemon scanner.c zephir.c libzephir.so
 	-rm -rf .libs
+
+maintainer-clean-local:
+	-rm -f $(srcdir)/Makefile.in
+	-rm -f $(top_srcdir)/Makefile.in
