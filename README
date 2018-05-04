@@ -1,11 +1,18 @@
-libzephir
+libzephir - Implementation of the Zephir programming language as a library.
+https://zephir-lang.com
 
-Pre-Alpha Zephir Library, currently not working.
+What is Zephir
+==============
+
+Zephir is a high level language that eases the creation and maintainability of
+extensions for PHP. Zephir extensions are exported to C code that can be
+compiled and optimized by major C compilers such as gcc/clang/vc++.
+Functionality is exposed to the PHP language.
 
 Current Build Status
 ====================
 
-The Zephir Library is built under the Travis CI service.  Every commit pushed
+The Zephir Library is built under the Travis CI service. Every commit pushed
 to this repository will queue a build into the continuous integration service
 and will run all tests to ensure that everything is going well and the project
 is stable. To check current build status folow:
