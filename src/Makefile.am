@@ -29,7 +29,16 @@ lemon: lemon.c lempar.c
 	$(CC) -w lemon.c -o $@
 
 clean-local:
-	-rm -f *.out *.gcno *.loT lemon scanner.c zephir.c libzephir.so
+	-rm -f *.out \
+		*.gcno \
+		$(top_srcdir)/tests/*.gcno \
+		*.gcda \
+		$(top_srcdir)/tests/*.gcda \
+		*.loT \
+		lemon \
+		scanner.c \
+		zephir.c \
+		libzephir.so
 	-rm -rf .libs
 
 maintainer-clean-local:

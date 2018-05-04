@@ -175,4 +175,4 @@ extern const xx_token_names xx_tokens[];
   printf("State: %d char: %c\n", s, c); \
 } while (0)
 
-#endif
+#endif // LIBZEPHIR_SCANNER_H
