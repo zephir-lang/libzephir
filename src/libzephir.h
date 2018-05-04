@@ -19,10 +19,10 @@ extern "C" {
 /**
  * @brief Parses a program returning an intermediate array representation
  */
-int parse_program(char *program, unsigned int program_length, char *file_path);
+int parse_program(const char **result, char *program, unsigned int program_length, char *file_path);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif // LIBZEPHIR_H
