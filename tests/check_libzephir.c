@@ -22,6 +22,19 @@
 #include <check.h>
 #include "../src/libzephir.h"
 
+START_TEST(test_empty_file)
+{
+  const char *actual;
+  char program[] = "";
+  int retval;
+
+  retval = parse_program(&actual, program, 0, "eval code");
+
+  ck_assert_int_eq(retval, 0);
+  ck_assert_str_eq(actual, "[]");
+}
+END_TEST
+
 START_TEST(test_namespace)
 {
   const char *actual;
@@ -45,7 +58,9 @@ Suite * zephir_suite(void)
   /* Core test case */
   tc_core = tcase_create("Core");
 
+  tcase_add_test(tc_core, test_empty_file);
   tcase_add_test(tc_core, test_namespace);
+
   suite_add_tcase(s, tc_core);
 
   return s;
@@ -56,7 +71,6 @@ int main(void)
   int number_failed;
   Suite *s;
   SRunner *sr;
-
 
   s = zephir_suite();
   sr = srunner_create(s);

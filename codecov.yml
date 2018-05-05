@@ -1,0 +1,7 @@
+comment:
+  layout: "reach, diff, flags, files"
+  require_changes: false
+  behavior: default
+
+ignore:
+  - "tests"

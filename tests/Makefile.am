@@ -4,7 +4,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/src -I$(top_srcdir) -I$(top_srcdir)/tests
 
 LIBZEPHIR_LA = $(top_builddir)/src/libzephir.la
 
-TESTS=
+TESTS =
 TESTS += check_libzephir
 
 check_PROGRAMS =

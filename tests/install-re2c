@@ -5,7 +5,7 @@
 #
 # This source file is subject the MIT license, that is bundled with this
 # package in the file LICENSE, and is available through the world-wide-web
-# at the following url: https://zephir-lang.com/license.html               |
+# at the following url: https://zephir-lang.com/license.html
 
 if test -z "$RE2C_VERSION"; then
     echo "The RE2C_VERSION variable is not set. Stop."

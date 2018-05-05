@@ -1,0 +1,6 @@
+Testing
+=======
+
+- clang and gcov issue
+  https://travis-ci.org/zephir-lang/libzephir/jobs/375261968
+  ./src/.libs/scanner.gcno:version '402*', prefer '408*'

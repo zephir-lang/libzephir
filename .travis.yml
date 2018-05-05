@@ -33,6 +33,9 @@ addons:
       check
       libjson-c-dev
 
+before_install:
+  - $CC --version
+
 install:
   - |
     if [ "$TRAVIS_OS_NAME" == "osx" ]; then
@@ -48,10 +51,12 @@ before_script:
 script:
   - make
   - make check
-  - cat tests/test-suite.log
 
 after_success:
-  - if [[ ! -z "${CODECOV_TOKEN}" ]]; then bash <(curl -s https://codecov.io/bash); fi;
+  - if [[ ! -z "${CODECOV_TOKEN}" ]]; then (bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"); fi;
+
+after_failure:
+  - cat tests/tests-suite.log
 
 notifications:
   email:

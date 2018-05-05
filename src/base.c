@@ -74,11 +74,8 @@ int parse_program(const char **result, char *program, unsigned int program_lengt
   /**
 	 * Check if the program has any length
 	 */
-  if (!program_length) {
-    return EXIT_FAILURE;
-  }
-
-  if (program_length < 2) {
+  if (!program_length || program_length < 2) {
+    *result = "[]";
     return EXIT_SUCCESS;
   }
 
