@@ -53,10 +53,7 @@ script:
   - make check
 
 after_success:
-  - |
-    if [[ ! -z "${CODECOV_TOKEN}" ]]; then
-      bash <(curl -s https://codecov.io/bash) -G src/.libs
-    fi;
+  - if [[ ! -z "${CODECOV_TOKEN}" ]]; then (bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"); fi;
 
 after_failure:
   - cat tests/tests-suite.log
