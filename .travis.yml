@@ -51,7 +51,10 @@ script:
   - cat tests/test-suite.log
 
 after_success:
-  - if [[ ! -z "${CODECOV_TOKEN}" ]]; then bash <(curl -s https://codecov.io/bash); fi;
+  - |
+    if [[ ! -z "${CODECOV_TOKEN}" ]]; then
+      bash <(curl -s https://codecov.io/bash) -G src/.libs
+    fi;
 
 notifications:
   email:
