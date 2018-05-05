@@ -1,4 +1,7 @@
 comment:
   layout: "reach, diff, flags, files"
   require_changes: false
-  behavior: new
+  behavior: default
+
+ignore:
+  - "tests"
