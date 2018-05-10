@@ -4,4 +4,6 @@ ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = src . tests
 
-EXTRA_DIST = autogen.sh
+EXTRA_DIST = \
+	autogen.sh \
+	build/Makefile.win32.common
