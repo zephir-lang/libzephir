@@ -1,7 +1,11 @@
+codecov:
+  notify:
+    require_ci_to_pass: yes
+
 comment:
   layout: "reach, diff, flags, files"
   require_changes: false
   behavior: default
 
 ignore:
-  - "tests"
+  - "tests/"
