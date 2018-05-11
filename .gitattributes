@@ -1,9 +1,16 @@
 Makefile.*  linguist-language=Makefile
+*.m4        linguist-language=M4Sugar
 *.m4        linguist-language=M4
 *.c         linguist-language=C
 *.h         linguist-language=C
+src/*.inc.h linguist-language=C
+src/*.re    linguist-language=C
+*.ac        linguist-language=M4Sugar
 *.ac        linguist-language=M4
 *.w32       linguist-language=JavaScript
+
+codecov.yml linguist-vendored
+.travis.yml linguist-vendored
 
 AUTHORS     text
 COPYING     text
