@@ -27,20 +27,8 @@ matrix:
   include:
     - env: CC=gcc RE2C_VERSION=0.13.6
       compiler: gcc
-      os: linux
-    - env: CC=gcc RE2C_VERSION=0.13.6
-      compiler: gcc
-      os: osx
     - env: CC=clang RE2C_VERSION=0.13.6
       compiler: clang
-      os: linux
-    - env: CC-clang RE2C_VERSION=0.13.6
-      compiler: clang
-      os: osx
-
-os:
-  - linux
-  - osx
 
 cache:
   apt: true
@@ -61,11 +49,6 @@ before_install:
   - $CC --version
 
 install:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-      brew update
-      brew install check
-    fi
   - sh tests/install-re2c $RE2C_VERSION
   - sh autogen.sh --enable-debug --enable-gcov --enable-unit-test
 
