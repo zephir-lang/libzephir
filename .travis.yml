@@ -11,9 +11,32 @@ compiler:
   - clang
 
 env:
+  global:
+    - RE2C_VERSION=1.0.3
   matrix:
-    - RE2C_VERSION="0.13.6"
-    - RE2C_VERSION="1.0.3"
+    - CC=gcc
+    - CC=clang
+
+matrix:
+  fast_finish: true
+  exclude:
+    - env: CC=gcc
+      compiler: clang
+    - env: CC=clang
+      compiler: gcc
+  include:
+    - env: CC=gcc RE2C_VERSION=0.13.6
+      compiler: gcc
+      os: linux
+    - env: CC=gcc RE2C_VERSION=0.13.6
+      compiler: gcc
+      os: osx
+    - env: CC=clang RE2C_VERSION=0.13.6
+      compiler: clang
+      os: linux
+    - env: CC-clang RE2C_VERSION=0.13.6
+      compiler: clang
+      os: osx
 
 os:
   - linux
