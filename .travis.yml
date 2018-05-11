@@ -52,6 +52,7 @@ cache:
 
 addons:
   apt:
+    update: true
     packages:
       check
       libjson-c-dev
