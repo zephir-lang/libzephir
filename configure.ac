@@ -59,7 +59,9 @@ if test "x$enable_unit_test" = "xyes" ; then
   dnl libcheck.a are installed in your system. It sets CHECK_CFLAGS and
   dnl HECK_LIBS accordingly.
   dnl ------------------------------------------------------------------------
-  PKG_CHECK_MODULES([CHECK], [check >= 0.9.6], have_check=yes, have_check=no)
+  PKG_CHECK_MODULES([CHECK], [check >= 0.9.6], have_check=yes,
+    AC_MSG_ERROR([check 0.9.6 or newer not found.])
+  )
 else
   have_check=no
 fi
