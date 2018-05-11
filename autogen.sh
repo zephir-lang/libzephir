@@ -18,7 +18,6 @@ echo "Checking for autoreconf ..."
     echo "libtool, etc) to update the build system.  Download the appropriate"
     echo "packages for your distribution, or get the source tar balls from"
     echo "ftp://ftp.gnu.org/pub/gnu/."
-    echo
     exit 1
   }
   echo
@@ -26,7 +25,6 @@ echo "Checking for autoreconf ..."
   echo "to update the build system.  Download the appropriate updated package"
   echo "for your distribution, or get the source tar ball from"
   echo "ftp://ftp.gnu.org/pub/gnu/."
-  echo
   exit 1
 }
 
@@ -36,7 +34,6 @@ echo "Checking for aclocal ..."
     echo "**Error**: You must have GNU Automake to compile this package."
     echo "Download the appropriate package for your distribution,"
     echo "or get the source tarball at ftp://ftp.gnu.org/pub/gnu/"
-    echo
     exit 1
 }
 
@@ -53,7 +50,5 @@ echo "Removing autom4te.cache ..."
 rm -rf autom4te.cache
 
 cd $ORIGDIR
-test -n "$NOCONFIGURE" || ( echo "Running ./configure with $@" && "$srcdir/configure" "$@" )
 
 echo "Finished."
-echo

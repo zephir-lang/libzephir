@@ -50,9 +50,10 @@ before_install:
 
 install:
   - sh tests/install-re2c $RE2C_VERSION
-  - sh autogen.sh --enable-debug --enable-gcov --enable-unit-test
+  - sh autogen.sh
 
 script:
+  - ./configure --enable-debug --enable-gcov --enable-unit-test
   - make
   - make check
 
