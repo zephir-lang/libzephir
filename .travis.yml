@@ -43,10 +43,7 @@ install:
       brew install check
     fi
   - sh tests/install-re2c $RE2C_VERSION
-  - sh autogen.sh
-
-before_script:
-  - ./configure --enable-debug --enable-gcov
+  - sh autogen.sh --enable-debug --enable-gcov
 
 script:
   - make

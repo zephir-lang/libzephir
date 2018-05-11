@@ -4,6 +4,12 @@
 
 set -e
 
+test -n "$srcdir" || srcdir=`dirname "$0"`
+test -n "$srcdir" || srcdir=.
+
+ORIGDIR=`pwd`
+cd $srcdir
+
 (autoreconf --version) < /dev/null > /dev/null 2>&1 || {
   (autoconf --version) < /dev/null > /dev/null 2>&1 || {
     echo
@@ -26,7 +32,10 @@ echo "Running autoreconf --verbose --install --force --warnings=all"
 #   timestamp in relation to that of the file configure.ac.
 # - The option --install copies some missing files to the directory,
 #   including the text files e.g. COPYING and INSTALL.
-autoreconf --verbose --install --force --warnings=all
+autoreconf --verbose --install --force --warnings=all || exit $?
 
 echo "Removing autom4te.cache"
 rm -rf autom4te.cache
+
+cd $ORIGDIR
+test -n "$NOCONFIGURE" || "$srcdir/configure" "$@"
