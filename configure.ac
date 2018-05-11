@@ -45,11 +45,26 @@ AS_IF([test "x$json_found_headers" != "xyes"], [
   AC_MSG_ERROR([Unable to find json-c headers.])
 ])
 
-dnl This macro is defined in check.m4 and tests if check.h and
-dnl libcheck.a are installed in your system. It sets CHECK_CFLAGS and
-dnl HECK_LIBS accordingly.
-dnl ------------------------------------------------------------------------
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
+dnl Test if --enable-unit-test given
+dnl --------------------------------------------------------------------------
+AC_ARG_ENABLE([unit-test],
+  [AS_HELP_STRING([--enable-unit-test],
+                  [enable unit test (default is no)])],
+  [enable_unit_test=$enableval],
+  [enable_unit_test=no]
+)
+
+if test "x$enable_unit_test" = "xyes" ; then
+  dnl This macro is defined in check.m4 and tests if check.h and
+  dnl libcheck.a are installed in your system. It sets CHECK_CFLAGS and
+  dnl HECK_LIBS accordingly.
+  dnl ------------------------------------------------------------------------
+  PKG_CHECK_MODULES([CHECK], [check >= 0.9.6], have_check=yes, have_check=no)
+else
+  have_check=no
+fi
+
+AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
 AC_ARG_ENABLE([debug],
   [AS_HELP_STRING([--enable-debug],
