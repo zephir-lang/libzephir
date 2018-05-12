@@ -1,4 +1,12 @@
 #!/bin/sh
+#
+# Zephir Library
+# Copyright (c) 2013-2018 Zephir Team (https://zephir-lang.com/)
+#
+# This source file is subject the MIT license, that is bundled with this
+# package in the file LICENSE, and is available through the world-wide-web
+# at the following url: https://zephir-lang.com/license.html
+#
 
 # Run this to generate configure, Makefile.in's, etc
 
@@ -8,7 +16,7 @@ test -n "$srcdir" || srcdir=`dirname "$0"`
 test -n "$srcdir" || srcdir=.
 
 ORIGDIR=`pwd`
-cd $srcdir
+cd ${srcdir}
 
 echo "Checking for autoreconf ..."
 (autoreconf --version) < /dev/null > /dev/null 2>&1 || {
@@ -49,6 +57,6 @@ autoreconf --verbose --install --force --warnings=all || exit $?
 echo "Removing autom4te.cache ..."
 rm -rf autom4te.cache
 
-cd $ORIGDIR
+cd ${ORIGDIR}
 
 echo "Finished."
