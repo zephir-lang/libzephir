@@ -127,6 +127,12 @@ int parse_program(const char **result, char *program, unsigned int program_lengt
 		case XX_T_IDENTIFIER:
 			xx_parse_with_token(xx_parser, XX_T_IDENTIFIER, XX_IDENTIFIER, &token, parser_status);
 			break;
+		case XX_T_USE:
+			xx_(xx_parser, XX_USE, NULL, parser_status);
+			break;
+		case XX_T_AS:
+			xx_(xx_parser, XX_AS, NULL, parser_status);
+			break;
 		default:
 			parser_status->status = XX_PARSING_FAILED;
 			fprintf(stderr, "Scanner: unknown opcode %d\n", token.opcode);

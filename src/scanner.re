@@ -28,6 +28,7 @@ int xx_get_token(xx_scanner_state *s, xx_scanner_token *token)
 
 	while (XX_SCANNER_RETCODE_IMPOSSIBLE == status) {
 		/*!re2c
+		/* ----------- */
 		re2c:indent:top = 2;
 		re2c:yyfill:enable = 0;
 
