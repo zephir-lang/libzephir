@@ -48,8 +48,4 @@ ltmain.sh
 missing
 stamp-h1
 
-# Tests
 /test-driver
-/tests/check_libzephir
-/tests/*.log
-/tests/*.trs

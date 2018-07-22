@@ -38,13 +38,15 @@ END_TEST
 START_TEST(test_namespace)
 {
   const char *actual;
+  const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 1, \"char\": 19 } ]";
+
   char program[] = "namespace Phalcon;";
   int retval;
 
   retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
 
   ck_assert_int_eq(retval, 0);
-  ck_assert_str_eq(actual, "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 1, \"char\": 19 } ]");
+  ck_assert_str_eq(actual, expectted);
 }
 END_TEST
 
@@ -55,8 +57,8 @@ Suite * zephir_suite(void)
 
   s = suite_create("Zephir Library");
 
-  /* Core test case */
-  tc_core = tcase_create("Core");
+  /* test001 test case */
+  tc_core = tcase_create("test001");
 
   tcase_add_test(tc_core, test_empty_file);
   tcase_add_test(tc_core, test_namespace);
