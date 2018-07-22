@@ -48,3 +48,5 @@
 #define XX_NAMESPACE                       48
 #define XX_IDENTIFIER                      49
 #define XX_DOTCOMMA                        50
+#define XX_USE                             51
+#define XX_AS                              52

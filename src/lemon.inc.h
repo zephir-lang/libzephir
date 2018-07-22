@@ -56,7 +56,7 @@ static json_object *xx_ret_namespace(xx_parser_token *T, xx_scanner_state *state
 	return ret;
 }
 
-static void xx_ret_use_aliases(json_object *use_aliases_list, xx_scanner_state *state)
+static json_object *xx_ret_use_aliases(json_object *use_aliases_list, xx_scanner_state *state)
 {
 	json_object *ret = json_object_new_object();
 
@@ -66,6 +66,8 @@ static void xx_ret_use_aliases(json_object *use_aliases_list, xx_scanner_state *
 	json_object_object_add(ret, "file", json_object_new_string(state->active_file));
 	json_object_object_add(ret, "line", json_object_new_int(state->active_line));
 	json_object_object_add(ret, "char", json_object_new_int(state->active_char));
+
+	return ret;
 }
 
 static json_object *xx_ret_use_aliases_item(xx_parser_token *T, xx_parser_token *A, xx_scanner_state *state)
