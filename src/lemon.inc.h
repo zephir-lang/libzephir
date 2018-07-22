@@ -17,22 +17,22 @@
 #include "scanner.h"
 #include "xx.h"
 
-static json_object *xx_ret_list(json_object *list_left, json_object *right_list)
+static json_object *xx_ret_list(json_object *left_list, json_object *right_list)
 {
 	json_object *ret;
 	int i, array_length;
 
 	ret = json_object_new_array();
 
-	if (list_left) {
-		if (json_object_get_type(list_left) == json_type_array) {
-			if (json_object_get_type(list_left) == json_type_array) {
-				array_length = json_object_array_length(list_left);
+	if (left_list) {
+		if (json_object_get_type(left_list) == json_type_array) {
+			if (json_object_get_type(left_list) == json_type_array) {
+				array_length = json_object_array_length(left_list);
 				for (i = 0; i < array_length; i++) {
-					json_object_array_add(ret, json_object_array_get_idx(list_left, i));
+					json_object_array_add(ret, json_object_array_get_idx(left_list, i));
 				}
 			} else {
-				json_object_array_add(ret, list_left);
+				json_object_array_add(ret, left_list);
 			}
 		}
 	}
