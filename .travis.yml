@@ -36,7 +36,6 @@ cache:
   directories:
     - $HOME/.local/opt/re2c
     - $HOME/.cache/re2c
-    - $HOME/Library/Caches/Homebrew
 
 stages:
   - test
@@ -45,6 +44,7 @@ addons:
   apt:
     update: true
     packages:
+      lcov
       check
       libjson-c-dev
 
@@ -58,7 +58,8 @@ install:
   - sh autogen.sh
 
 script:
-  - ./configure --enable-debug --enable-gcov --enable-unit-test || ( cat config.log && false )
+  - export LIBZEPHIR_CONFIG="--enable-debug --enable-lcov --enable-unit-test --enable-werror --enable-gprof"
+  - ./configure $LIBZEPHIR_CONFIG || ( cat config.log && false )
   - make $MAKEJOBS || ( echo "Build failure. Verbose build follows." && make V=1 ; false )
   - make check $MAKEJOBS VERBOSE=1
 
