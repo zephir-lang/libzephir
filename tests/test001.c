@@ -68,6 +68,25 @@ START_TEST(test_single_import)
 }
 END_TEST
 
+START_TEST(test_single_import_as)
+{
+	const char *actual;
+	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 3, \"char\": 3 }, { \"type\": \"use\", \"name\": [ { \"name\": \"Psr\\\\Log\\\\LoggerAwareInterface\", \"alias\": \"Loggerable\", \"file\": \"eval code\", \"line\": 3, \"char\": 47 } ], \"file\": \"eval code\", \"line\": 4, \"char\": 0 } ]";
+
+	char program[] =
+		"namespace Phalcon;\n"
+		"\n"
+		"use Psr\\Log\\LoggerAwareInterface as Loggerable;\n";
+
+	int retval;
+
+	retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
+
+	ck_assert_int_eq(retval, 0);
+	ck_assert_str_eq(actual, expectted);
+}
+END_TEST
+
 Suite * zephir_suite(void)
 {
 	Suite *s;
@@ -81,6 +100,7 @@ Suite * zephir_suite(void)
 	tcase_add_test(tc_core, test_empty_file);
 	tcase_add_test(tc_core, test_namespace);
 	tcase_add_test(tc_core, test_single_import);
+	tcase_add_test(tc_core, test_single_import_as);
 
 	suite_add_tcase(s, tc_core);
 
