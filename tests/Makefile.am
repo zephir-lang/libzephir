@@ -7,21 +7,21 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/tests
 
-TESTS += check_libzephir
+TESTS += test001
 
-check_PROGRAMS += check_libzephir
+check_PROGRAMS += test001
 
 EXTRA_DIST += \
 	install-re2c \
 	$(TESTS)
 
-check_libzephir_SOURCES = \
-	check_libzephir.c \
+test001_SOURCES = \
+	test001.c \
 	$(top_builddir)/src/libzephir.h
 
-check_libzephir_CFLAGS = @CHECK_CFLAGS@
+test001_CFLAGS = @CHECK_CFLAGS@
 
-check_libzephir_LDADD = \
+test001_LDADD = \
 	$(LIBZEPHIR_LA) \
 	@CHECK_LIBS@
 
