@@ -1,6 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 
+AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(GPROF_LDFLAGS)
+AM_CFLAGS = $(DEBUG_CFLAGS) $(WARN_CFLAGS) $(NOWARN_CFLAGS) $(ERROR_CFLAGS) $(GPROF_CFLAGS)
+
 lib_LTLIBRARIES = libzephir.la
+
+libzephir_la_CFLAGS = $(AM_CFLAGS) $(PIE_FLAGS)
 libzephir_la_SOURCES = scanner.re scanner.c zephir.c
 libzephir_la_LIBADD = -ljson-c -lm
 
@@ -10,7 +15,7 @@ libzephir_la_LIBADD = -ljson-c -lm
 # - Increase the age value only if the changes made to the ABI are backward compatible.
 # https://autotools.io/libtool/version.html
 # The order for version-info is <current>:<revision>:<age>
-libzephir_la_LDFLAGS = -Wall -version-info 1:1:0
+libzephir_la_LDFLAGS = $(AM_LDFLAGS) -version-info 1:1:0
 
 pkginclude_HEADERS = \
 	xx.h \

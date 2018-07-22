@@ -8,8 +8,7 @@ dnl Search for the re2c binary and check the version
 dnl -------------------------------------------------------------------------
 AC_DEFUN([LIBZEPHIR_RE2C_CHECK],[
   AC_CHECK_PROG(RE2C, re2c, re2c)
-
-  if test -n "$RE2C"; then
+  if test "x$RE2C" != "x"; then
     AC_CACHE_CHECK([for re2c version], libzephir_cv_re2c_version, [
       re2c_vernum=`$RE2C --vernum 2>/dev/null`
       if test -z "$re2c_vernum"; then
@@ -46,6 +45,16 @@ AC_DEFUN([LIBZEPHIR_RE2C_CHECK],[
 dnl libzephir basic checks.
 dnl --------------------------------------------------------------------------
 AC_DEFUN([LIBZEPHIR_BASIC_CHECKS],[
+  dnl Check/return PATH for base programs.
+  dnl ------------------------------------------------------------------------
+  AC_PATH_TOOL(AR, ar)
+  AC_PATH_TOOL(RANLIB, ranlib)
+  AC_PATH_TOOL(STRIP, strip)
+  AC_PATH_TOOL(GCOV, gcov)
+  AC_PATH_PROG(LCOV, lcov)
+  AC_PATH_PROG(GENHTML, genhtml)
+  AC_PATH_PROG(CCACHE, ccache)
+
   dnl Checks for programs.
   dnl ------------------------------------------------------------------------
   AC_REQUIRE([AC_PROG_CC])
