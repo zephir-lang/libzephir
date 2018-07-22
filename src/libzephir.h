@@ -12,17 +12,9 @@
 #ifndef LIBZEPHIR_H
 #define LIBZEPHIR_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @brief Parses a program returning an intermediate array representation
  */
 int parse_program(const char **result, char *program, unsigned int program_length, char *file_path);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // LIBZEPHIR_H

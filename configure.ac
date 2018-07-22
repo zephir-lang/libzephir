@@ -251,7 +251,6 @@ if test "x$use_ccache" != "xno"; then
   else
     use_ccache=yes
     CC="$ac_cv_path_CCACHE $CC"
-    CXX="$ac_cv_path_CCACHE $CXX"
   fi
   AC_MSG_RESULT($use_ccache)
 fi
@@ -310,7 +309,6 @@ echo "  build os      = $BUILD_OS"
 echo
 echo "  CC            = $CC"
 echo "  CFLAGS        = $DEBUG_CFLAGS $WARN_CFLAGS $NOWARN_CFLAGS $ERROR_CFLAGS $GPROF_CFLAGS $CFLAGS"
-echo "  CXX           = $CXX"
 echo "  LDFLAGS       = $GPROF_LDFLAGS $LDFLAGS"
 echo "  ARFLAGS       = $ARFLAGS"
 echo "  LEMON_FLAGS   = $LEMON_FLAGS"
