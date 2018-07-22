@@ -133,6 +133,11 @@ int parse_program(const char **result, char *program, unsigned int program_lengt
 		case XX_T_AS:
 			xx_(xx_parser, XX_AS, NULL, parser_status);
 			break;
+		case XX_T_COMMENT:
+			if (parser_status->number_brackets <= 1) {
+				xx_parse_with_token(xx_parser, XX_T_COMMENT, XX_COMMENT, &token, parser_status);
+			}
+			break;
 		default:
 			parser_status->status = XX_PARSING_FAILED;
 			fprintf(stderr, "Scanner: unknown opcode %d\n", token.opcode);

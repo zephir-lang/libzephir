@@ -50,3 +50,4 @@
 #define XX_DOTCOMMA                        50
 #define XX_USE                             51
 #define XX_AS                              52
+#define XX_COMMENT                         53

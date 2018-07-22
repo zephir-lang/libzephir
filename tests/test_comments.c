@@ -22,42 +22,14 @@
 #include <check.h>
 #include "../src/libzephir.h"
 
-START_TEST(test_empty_file)
+START_TEST(test_sl_comment)
 {
 	const char *actual;
-	char program[] = "";
-	int retval;
-
-	retval = parse_program(&actual, program, 0, "eval code");
-
-	ck_assert_int_eq(retval, 0);
-	ck_assert_str_eq(actual, "[]");
-}
-END_TEST
-
-START_TEST(test_namespace)
-{
-	const char *actual;
-	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 1, \"char\": 19 } ]";
-
-	char program[] = "namespace Phalcon;";
-	int retval;
-
-	retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
-
-	ck_assert_int_eq(retval, 0);
-	ck_assert_str_eq(actual, expectted);
-}
-END_TEST
-
-START_TEST(test_single_import)
-{
-	const char *actual;
-	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 2, \"char\": 3 }, { \"type\": \"use\", \"name\": [ { \"name\": \"Psr\\\\Log\\\\LoggerAwareInterface\", \"file\": \"eval code\", \"line\": 2, \"char\": 33 } ], \"file\": \"eval code\", \"line\": 3, \"char\": 0 } ]";
+	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Actual\", \"file\": \"eval code\", \"line\": 2, \"char\": 17 } ]";
 
 	char program[] =
-		"namespace Phalcon;\n"
-		"use Psr\\Log\\LoggerAwareInterface;\n";
+		"// Some comment \n"
+		"namespace Actual;";
 
 	int retval;
 
@@ -68,15 +40,37 @@ START_TEST(test_single_import)
 }
 END_TEST
 
-START_TEST(test_single_import_as)
+START_TEST(test_comment)
 {
 	const char *actual;
-	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 3, \"char\": 3 }, { \"type\": \"use\", \"name\": [ { \"name\": \"Psr\\\\Log\\\\LoggerAwareInterface\", \"alias\": \"Loggerable\", \"file\": \"eval code\", \"line\": 3, \"char\": 47 } ], \"file\": \"eval code\", \"line\": 4, \"char\": 0 } ]";
+	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Actual\", \"file\": \"eval code\", \"line\": 2, \"char\": 17 } ]";
 
 	char program[] =
-		"namespace Phalcon;\n"
-		"\n"
-		"use Psr\\Log\\LoggerAwareInterface as Loggerable;\n";
+		"/* Some comment */\n"
+		"namespace Actual;";
+
+	int retval;
+
+	retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
+
+	ck_assert_int_eq(retval, 0);
+	ck_assert_str_eq(actual, expectted);
+}
+END_TEST
+
+START_TEST(test_docblock_comment)
+{
+	const char *actual;
+	const char *expectted = "[ { \"type\": \"comment\", \"value\": \"**\\n  +-------------+\\n  | Title       |\\n  +-------------+\\n  | Description |\\n  +-------------+\\n*\", \"file\": \"eval code\", \"line\": 8, \"char\": 0 } ]";
+
+	char program[] =
+		"/**\n"
+		"  +-------------+\n"
+		"  | Title       |\n"
+		"  +-------------+\n"
+		"  | Description |\n"
+		"  +-------------+\n"
+		"*/\n";
 
 	int retval;
 
@@ -90,18 +84,17 @@ END_TEST
 Suite * zephir_suite(void)
 {
 	Suite *s;
-	TCase *tc_core;
+	TCase *tc_comments;
 
-	s = suite_create("Base");
+	s = suite_create("Comments");
 
-	tc_core = tcase_create("test001");
+	tc_comments = tcase_create("test_comments");
 
-	tcase_add_test(tc_core, test_empty_file);
-	tcase_add_test(tc_core, test_namespace);
-	tcase_add_test(tc_core, test_single_import);
-	tcase_add_test(tc_core, test_single_import_as);
+	tcase_add_test(tc_comments, test_sl_comment);
+	tcase_add_test(tc_comments, test_comment);
+	tcase_add_test(tc_comments, test_docblock_comment);
 
-	suite_add_tcase(s, tc_core);
+	suite_add_tcase(s, tc_comments);
 
 	return s;
 }
