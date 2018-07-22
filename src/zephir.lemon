@@ -108,6 +108,7 @@ xx_namespace_def(R) ::= USE xx_use_aliases_list(L) DOTCOMMA . {
 	R = xx_ret_use_aliases(L, status->scanner_state);
 }
 
+// FIXME: Does not work
 xx_use_aliases_list(R) ::= xx_use_aliases_list(L) COMMA xx_use_aliases(U) . {
 	R = xx_ret_list(L, U);
 }
