@@ -24,62 +24,62 @@
 
 START_TEST(test_empty_file)
 {
-  const char *actual;
-  char program[] = "";
-  int retval;
+	const char *actual;
+	char program[] = "";
+	int retval;
 
-  retval = parse_program(&actual, program, 0, "eval code");
+	retval = parse_program(&actual, program, 0, "eval code");
 
-  ck_assert_int_eq(retval, 0);
-  ck_assert_str_eq(actual, "[]");
+	ck_assert_int_eq(retval, 0);
+	ck_assert_str_eq(actual, "[]");
 }
 END_TEST
 
 START_TEST(test_namespace)
 {
-  const char *actual;
-  const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 1, \"char\": 19 } ]";
+	const char *actual;
+	const char *expectted = "[ { \"type\": \"namespace\", \"name\": \"Phalcon\", \"file\": \"eval code\", \"line\": 1, \"char\": 19 } ]";
 
-  char program[] = "namespace Phalcon;";
-  int retval;
+	char program[] = "namespace Phalcon;";
+	int retval;
 
-  retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
+	retval = parse_program(&actual, program, sizeof(program) / sizeof(*program), "eval code");
 
-  ck_assert_int_eq(retval, 0);
-  ck_assert_str_eq(actual, expectted);
+	ck_assert_int_eq(retval, 0);
+	ck_assert_str_eq(actual, expectted);
 }
 END_TEST
 
 Suite * zephir_suite(void)
 {
-  Suite *s;
-  TCase *tc_core;
+	Suite *s;
+	TCase *tc_core;
 
-  s = suite_create("Zephir Library");
+	s = suite_create("Zephir Library");
 
-  /* test001 test case */
-  tc_core = tcase_create("test001");
+	/* test001 test case */
+	tc_core = tcase_create("test001");
 
-  tcase_add_test(tc_core, test_empty_file);
-  tcase_add_test(tc_core, test_namespace);
+	tcase_add_test(tc_core, test_empty_file);
+	tcase_add_test(tc_core, test_namespace);
 
-  suite_add_tcase(s, tc_core);
+	suite_add_tcase(s, tc_core);
 
-  return s;
+	return s;
 }
 
 int main(void)
 {
-  int number_failed;
-  Suite *s;
-  SRunner *sr;
+	int number_failed;
+	Suite *s;
+	SRunner *sr;
 
-  s = zephir_suite();
-  sr = srunner_create(s);
+	s = zephir_suite();
+	sr = srunner_create(s);
 
-  srunner_run_all(sr, CK_NORMAL);
-  number_failed = srunner_ntests_failed(sr);
-  srunner_free(sr);
-  return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+	srunner_run_all(sr, CK_NORMAL);
+	number_failed = srunner_ntests_failed(sr);
+	srunner_free(sr);
+	return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 

@@ -1,12 +1,12 @@
 /*
-+--------------------------------------------------------------------------+
-| Zephir Library                                                           |
-| Copyright (c) 2013-2018 Zephir Team (https://zephir-lang.com/)           |
-|                                                                          |
-| This source file is subject the MIT license, that is bundled with this   |
-| package in the file LICENSE, and is available through the world-wide-web |
-| at the following url: https://zephir-lang.com/license.html               |
-+--------------------------------------------------------------------------+
+  +--------------------------------------------------------------------------+
+  | Zephir Library                                                           |
+  | Copyright (c) 2013-2018 Zephir Team (https://zephir-lang.com/)           |
+  |                                                                          |
+  | This source file is subject the MIT license, that is bundled with this   |
+  | package in the file LICENSE, and is available through the world-wide-web |
+  | at the following url: https://zephir-lang.com/license.html               |
+  +--------------------------------------------------------------------------+
 */
 
 %token_prefix XX_
@@ -46,17 +46,17 @@
 }
 
 %syntax_error {
-  json_object *syntax_error = json_object_new_object();
+	json_object *syntax_error = json_object_new_object();
 
-  json_object_object_add(syntax_error, "type", json_object_new_string("error"));
+	json_object_object_add(syntax_error, "type", json_object_new_string("error"));
 
-  if (status->scanner_state->start_length) {
-    json_object_object_add(syntax_error, "message", json_object_new_string("Syntax error"));
-  } else {
-    json_object_object_add(syntax_error, "message", json_object_new_string("Unexpected EOF"));
-  }
+	if (status->scanner_state->start_length) {
+		json_object_object_add(syntax_error, "message", json_object_new_string("Syntax error"));
+	} else {
+		json_object_object_add(syntax_error, "message", json_object_new_string("Unexpected EOF"));
+	}
 
-  json_object_object_add(syntax_error, "file", json_object_new_string(status->scanner_state->active_file));
+	json_object_object_add(syntax_error, "file", json_object_new_string(status->scanner_state->active_file));
 	json_object_object_add(syntax_error, "line", json_object_new_int(status->scanner_state->active_line));
 	json_object_object_add(syntax_error, "char", json_object_new_int(status->scanner_state->active_char));
 
@@ -65,19 +65,19 @@
 }
 
 %token_destructor {
-  if ($$) {
-    if ($$->free_flag) {
-      free($$->token);
-    }
-  }
+	if ($$) {
+		if ($$->free_flag) {
+			free($$->token);
+		}
+	}
 }
 
 program ::= xx_language(Q) . {
-  status->ret = Q;
+	status->ret = Q;
 }
 
 %destructor xx_language {
-  json_object_put($$);
+	json_object_put($$);
 }
 
 xx_language(R) ::= xx_top_statement_list(L) . {
@@ -96,8 +96,32 @@ xx_top_statement(R) ::= xx_namespace_def(T) . {
 	R = T;
 }
 
+xx_top_statement(R) ::= xx_use_aliases(T) . {
+	R = T;
+}
+
 xx_namespace_def(R) ::= NAMESPACE IDENTIFIER(I) DOTCOMMA . {
 	R = xx_ret_namespace(I, status->scanner_state);
+}
+
+xx_namespace_def(R) ::= USE xx_use_aliases_list(L) DOTCOMMA . {
+	R = xx_ret_use_aliases(L, status->scanner_state);
+}
+
+xx_use_aliases_list(R) ::= xx_use_aliases_list(L) COMMA xx_use_aliases(U) . {
+	R = xx_ret_list(L, U);
+}
+
+xx_use_aliases_list(R) ::= xx_use_aliases(U) . {
+	R = xx_ret_list(NULL, U);
+}
+
+xx_use_aliases(R) ::= IDENTIFIER(I) . {
+	R = xx_ret_use_aliases_item(I, NULL, status->scanner_state);
+}
+
+xx_use_aliases(R) ::= IDENTIFIER(I) AS IDENTIFIER(A) . {
+	R = xx_ret_use_aliases_item(I, A, status->scanner_state);
 }
 
 /*
