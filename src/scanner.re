@@ -28,9 +28,9 @@ int xx_get_token(xx_scanner_state *s, xx_scanner_token *token)
 
 	while (XX_SCANNER_RETCODE_IMPOSSIBLE == status) {
 		/*!re2c
-		/* ----------- */
 		re2c:indent:top = 2;
 		re2c:yyfill:enable = 0;
+		/* ----------- */
 
 		'namespace' {
 			s->active_char += sizeof("namespace")-1;
@@ -47,6 +47,58 @@ int xx_get_token(xx_scanner_state *s, xx_scanner_token *token)
 		'as' {
 			s->active_char += sizeof("as")-1;
 			token->opcode = XX_T_AS;
+			return 0;
+		}
+
+		DCOMMENT = ("/**"([^*]+|[*]+[^/*])*[*]*"*/");
+		DCOMMENT {
+			start++;
+			token->opcode = XX_T_COMMENT;
+			/* TODO: strndup is a GNU extension and is not present on Mac OS X */
+			token->value = strndup(start, YYCURSOR - start - 1);
+			token->len = YYCURSOR - start - 1;
+			{
+				int k, ch = s->active_char;
+				for (k = 0; k < (token->len - 1); k++) {
+					if (token->value[k] == '\n') {
+						ch = 1;
+						s->active_line++;
+					} else {
+						ch++;
+					}
+				}
+				s->active_char = ch;
+			}
+			return 0;
+		}
+
+		COMMENT = ("/*"([^*]+|[*]+[^/*])*[*]*"*/");
+		COMMENT {
+			token->opcode = XX_T_IGNORE;
+			/* TODO: strndup is a GNU extension and is not present on Mac OS X */
+			token->value = strndup(start, YYCURSOR - start - 1);
+			token->len = YYCURSOR - start - 1;
+			{
+				int k, ch = s->active_char;
+				for (k = 0; k < (token->len - 1); k++) {
+					if (token->value[k] == '\n') {
+						ch = 1;
+						s->active_line++;
+					} else {
+						ch++;
+					}
+				}
+				s->active_char = ch;
+			}
+			free(token->value);
+			token->len = 0;
+			return 0;
+		}
+
+		SLCOMMENT = ("//"[^\r\n]*);
+		SLCOMMENT {
+			s->active_char += (YYCURSOR - start);
+			token->opcode = XX_T_IGNORE;
 			return 0;
 		}
 

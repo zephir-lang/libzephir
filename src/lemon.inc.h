@@ -85,3 +85,17 @@ static json_object *xx_ret_use_aliases_item(xx_parser_token *T, xx_parser_token 
 
 	return ret;
 }
+
+static json_object *xx_ret_comment(xx_parser_token *T, xx_scanner_state *state)
+{
+	json_object *ret = json_object_new_object();
+
+	json_object_object_add(ret, "type", json_object_new_string("comment"));
+	json_object_object_add(ret, "value", json_object_new_string(T->token));
+
+	json_object_object_add(ret, "file", json_object_new_string(state->active_file));
+	json_object_object_add(ret, "line", json_object_new_int(state->active_line));
+	json_object_object_add(ret, "char", json_object_new_int(state->active_char));
+
+	return ret;
+}

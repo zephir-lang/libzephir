@@ -100,6 +100,10 @@ xx_top_statement(R) ::= xx_use_aliases(T) . {
 	R = T;
 }
 
+xx_top_statement(R) ::= xx_comment(T) . {
+	R = T;
+}
+
 xx_namespace_def(R) ::= NAMESPACE IDENTIFIER(I) DOTCOMMA . {
 	R = xx_ret_namespace(I, status->scanner_state);
 }
@@ -123,6 +127,10 @@ xx_use_aliases(R) ::= IDENTIFIER(I) . {
 
 xx_use_aliases(R) ::= IDENTIFIER(I) AS IDENTIFIER(A) . {
 	R = xx_ret_use_aliases_item(I, A, status->scanner_state);
+}
+
+xx_comment(R) ::= COMMENT(C) . {
+	R = xx_ret_comment(C, status->scanner_state);
 }
 
 /*
